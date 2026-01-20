@@ -19,20 +19,57 @@
 			};
 		</script>
 		<style>
+			body{
+				font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+				font-size: 14px;
+			}
 			textarea{
 				display: inline-block;
 				margin: 10px;
+				font:12px Menlo, Monaco, Consolas, monospace;
+				line-height: 1.3;
+				resize: vertical;
 			}
 
 			button{
 				display: inline-block;
 			}
+			.row{
+				display: flex;
+				width: 100%;
+				align-items: stretch;
+				min-height: 400px;
+			}
+			.row textarea{
+				flex-grow: 1;
+				padding: 10px;
+			}
+			.btn-convert{
+				width: 90%;
+				margin: 20px auto;
+				background: #0c8c4a;
+				padding: 10px;
+				display: block;
+				border-radius: 2px;
+				color: white;
+				border:0;
+			}
+			.btn-convert:hover{
+				background: #0a6b39;
+			}
+			.content-wrapper{
+				max-width: 1400px;
+				margin: 0 auto;
+			}
 		</style>
 	</head>
 	<body onload="init();">
-		<h1>Swagger Definition Objects Generator</h1>
-		<p>Add your JSON mock to generate Swagger definition objects.</p>
-		<textarea id="JSON" rows="20" cols="55" placeholder="Type your JSON">
+		<div class="content-wrapper">
+
+			<h1>Swagger Definition Objects Generator</h1>
+			<p>Add your JSON mock to generate Swagger definition objects.</p>
+			<div class="row">
+				<textarea id="JSON"  placeholder="Type your JSON">
 {
 	"numbersMock": {
 		"smallInt": -20,
@@ -53,22 +90,28 @@
 	}
 }
 		</textarea>
-	  <button type="button" onclick="convert()">Convert</button>
-		<textarea readonly id="Swagger" rows="20" cols="85" placeholder="Here is your Swagger"></textarea>
-		<br>
-		<p>Add values as examples: <input type="checkbox" id="requestExamples"></p>
-		<p>Convert integer values to number: <input type="checkbox" id="noInt"></p>
-		<p>Convert null values to:
-			<select id="nullType">
-		  		<option value="string" selected="">String</option>
-		  		<option value="number">Number</option>
-				<option value="integer">Integer</option>
-				<option value="boolean">Boolean</option>
-			</select>
-		</p>
-		<p>Output as YAML: <input type="checkbox" id="yamlOut"></p>	
-		<hr>
-		<p>Feel like collaborating? Clone the repository at <a target="_blank" href="https://github.com/Roger13/SwaggerGenerator">GitHub</a></p>
+				<textarea readonly id="Swagger" placeholder="Here is your Swagger"></textarea>
+			</div>
+		  <button type="button" onclick="convert()" class="btn-convert">Convert</button>
+			
+			<ul style="list-style: none;padding-left: 0;">
+				
+				<li>Add values as examples: <input type="checkbox" id="requestExamples"></li>
+				<li>Convert integer values to number: <input type="checkbox" id="noInt"></li>
+				<li>Convert null values to:
+					<select id="nullType">
+						  <option value="string" selected="">String</option>
+						  <option value="number">Number</option>
+						<option value="integer">Integer</option>
+						<option value="boolean">Boolean</option>
+					</select>
+				</li>
+				<li>Output as YAML: <input type="checkbox" id="yamlOut"></li>	
+			</ul>
+
+			<p style="font-size: 12px;margin-top: 10px;text-align: right;">Feel like collaborating? Clone the repository at <a target="_blank" href="https://github.com/Roger13/SwaggerGenerator">GitHub</a></p>
+		</div>
+	
 
 	</body>
 	<script>
